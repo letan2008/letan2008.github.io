@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>谭乐 · 个人主页</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: ui-rounded, -apple-system, BlinkMacSystemFont,
+                   "PingFang SC", "Hiragino Sans GB", "MiSans", "Microsoft YaHei", sans-serif;
+      background: #f5f5f7;
+      color: #3c3c40;
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+      letter-spacing: 0.01em;
+    }
+
+    /* ===== Hero ===== */
+    .hero {
+      min-height: 82vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 60px 24px;
+    }
+    .hero .avatar {
+      width: 96px; height: 96px;
+      border-radius: 50%;
+      background: #fff;
+      font-size: 40px; font-weight: 500;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 40px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+    }
+    .hero h1 {
+      font-size: clamp(38px, 7.5vw, 68px);
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      line-height: 1.15;
+      margin-bottom: 22px;
+    }
+    .hero .sub {
+      font-size: clamp(20px, 3.2vw, 26px);
+      font-weight: 500;
+      color: #86868b;
+      margin-bottom: 14px;
+    }
+    .hero .meta {
+      font-size: 17px; color: #86868b;
+      display: flex; flex-wrap: wrap; gap: 8px;
+      align-items: center; justify-content: center;
+    }
+    .hero .meta .dot { width: 4px; height: 4px; border-radius: 50%; background: #d2d2d7; }
+    .hero .learnmore {
+      margin-top: 56px;
+      color: #2997ff;
+      font-size: 19px; text-decoration: none;
+      animation: float 2.4s ease-in-out infinite;
+    }
+    .hero .learnmore:hover { opacity: 0.75; }
+    @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
+
+    /* ===== 区块 ===== */
+    section { max-width: 720px; margin: 0 auto; padding: 90px 24px; }
+    section h2 {
+      font-size: 36px; font-weight: 600;
+      letter-spacing: 0.02em; text-align: center;
+      margin-bottom: 16px;
+    }
+    section .lead {
+      text-align: center; color: #86868b;
+      font-size: 20px; font-weight: 500;
+      margin-bottom: 48px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 32px;
+      padding: 48px 44px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.05);
+    }
+    .card p { font-size: 19px; line-height: 1.95; margin-bottom: 20px; color: #494950; }
+    .card p:last-child { margin-bottom: 0; }
+    .card .highlight { font-weight: 600; color: #3c3c40; }
+
+    /* ===== 热爱：双卡片（科比紫金 / 雨后青蓝）===== */
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .passion {
+      background: #fff;
+      border-radius: 32px;
+      padding: 40px 32px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease;
+    }
+    .passion:hover { transform: translateY(-6px); }
+
+    /* 科比卡：湖人紫金渐变 */
+    .passion.hoop { background: linear-gradient(168deg, #f5f0ff 0%, #ffffff 62%); }
+    /* 说唱卡：雨后清晨青蓝渐变 */
+    .passion.rap  { background: linear-gradient(168deg, #eaf3fa 0%, #ffffff 62%); }
+
+    .passion-head {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 18px;
+    }
+    .passion .icon { font-size: 44px; }
+    .badge {
+      padding: 5px 16px;
+      border-radius: 980px;
+      font-size: 13px; font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+    .hoop .badge { background: #552583; color: #fdb927; }
+    .rap .badge  { background: #4a6fa5; color: #eaf3fa; }
+
+    .passion h3 { font-size: 25px; font-weight: 600; margin-bottom: 4px; letter-spacing: 0.02em; }
+    .passion .mini {
+      font-size: 13px; font-weight: 600;
+      letter-spacing: 0.1em;
+      margin-bottom: 16px;
+    }
+    .hoop .mini { color: #8a6fd6; }
+    .rap .mini  { color: #5f83ad; }
+
+    .passion p { font-size: 17px; line-height: 1.8; color: #55555c; }
+
+    .sign {
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(0,0,0,0.06);
+      font-size: 14.5px; font-weight: 500;
+      letter-spacing: 0.03em;
+    }
+    .hoop .sign { color: #7a5cc9; }
+    .rap .sign  { color: #4a6fa5; }
+
+    /* ===== 引言 ===== */
+    .quote-box { text-align: center; }
+    .quote-box .big {
+      font-size: clamp(26px, 5vw, 40px);
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      line-height: 1.55;
+      color: #3c3c40;
+      margin-bottom: 18px;
+    }
+    .quote-box .cap { color: #86868b; font-size: 16px; }
+
+    /* 标签胶囊 */
+    .tags { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+    .tag {
+      padding: 10px 24px;
+      background: #fff;
+      border-radius: 980px;
+      font-size: 17px; font-weight: 500;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+      transition: transform 0.25s ease;
+    }
+    .tag:hover { transform: scale(1.05); }
+
+    .reveal { opacity: 0; transform: translateY(36px); transition: all 0.9s cubic-bezier(0.25,0.4,0.25,1); }
+    .reveal.on { opacity: 1; transform: translateY(0); }
+
+    /* ===== 联系列表 ===== */
+    .contact-list {
+      background: #fff;
+      border-radius: 32px;
+      padding: 16px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.05);
+      max-width: 420px;
+      margin: 0 auto;
+    }
+    .contact-list a {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 20px 24px;
+      color: #3c3c40; font-size: 18px; font-weight: 500;
+      text-decoration: none;
+      border-radius: 24px;
+      transition: background 0.2s;
+    }
+    .contact-list a:hover { background: #f5f5f7; }
+    .contact-list .label { color: #86868b; font-size: 15px; font-weight: 400; }
+
+    footer {
+      text-align: center;
+      padding: 48px 24px 56px;
+      color: #86868b; font-size: 13px;
+      border-top: 1px solid #e8e8ed;
+    }
+
+    @media (max-width: 600px) {
+      section { padding: 70px 22px; }
+      .card { padding: 34px 26px; border-radius: 26px; }
+      .card p { font-size: 17px; }
+      .grid { grid-template-columns: 1fr; }
+      .passion { padding: 34px 26px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 主视觉区 -->
+  <header class="hero">
+    <div class="avatar">谭</div>
+    <h1>你好，我是谭乐。</h1>
+    <p class="sub">软件工程在读 · 篮球特长生 · Hip-Hop 爱好者。</p>
+    <div class="meta">
+      <span>湖南</span><span class="dot"></span>
+      <span>生于 2008</span><span class="dot"></span>
+      <span>小镇娃儿，正在路上</span>
+    </div>
+    <a class="learnmore" href="#about">进一步了解我 ↓</a>
+  </header>
+
+  <!-- 关于我 -->
+  <section id="about" class="reveal">
+    <h2>关于我。</h2>
+    <p class="lead">从湖南小镇，到软件工程的课堂。</p>
+    <div class="card">
+      <p>2008 年，我出生在湖南的一座小镇。那里的街道不长，天空却很大，少年时代的想象，都在那片天空下生根。十八岁这年，我走进软件工程的课堂，开始学着把想象写成代码。</p>
+      <p>「<span class="highlight">热爱尝试</span>」是我最想被记住的标签。篮球和说唱，是众多热爱里我最擅长的两样，但远远不是全部——世上有趣的事那么多，我想一样一样去试。小镇教我的第一课，就是别急着给自己下结论。</p>
+    </div>
+  </section>
+
+  <!-- 热爱 -->
+  <section class="reveal">
+    <h2>我的热爱。</h2>
+    <p class="lead">一个属于凌晨四点，一个属于雨后清晨。</p>
+    <div class="grid">
+
+      <!-- 篮球 · 科比 -->
+      <div class="passion hoop">
+        <div class="passion-head">
+          <div class="icon">🏀</div>
+          <span class="badge">8 · 24</span>
+        </div>
+        <h3>篮球</h3>
+        <p class="mini">MAMBA MENTALITY</p>
+        <p>偶像是科比·布莱恩特。「你见过凌晨四点的洛杉矶吗」——这句话我从小记到今天。曼巴精神教我的，从来不只是如何赢球，而是落后时也绝不松掉的那口气。我未必是场上最有天赋的人，但要争取做最不肯认输的那一个。</p>
+        <p class="sign">Mamba Forever 💜</p>
+      </div>
+
+      <!-- 说唱 · Asen -->
+      <div class="passion rap">
+        <div class="passion-head">
+          <div class="icon">🎤</div>
+          <span class="badge">雨后醒来</span>
+        </div>
+        <h3>说唱</h3>
+        <p class="mini">AFTER THE RAIN</p>
+        <p>热爱 Hip-Hop，最喜欢的 Rapper 是 Asen。同样来自小镇的他，曾被欺负、被低估，凭着一腔对说唱最纯粹的热爱，一步步走到了中文说唱的顶流。他的歌里有一种「雨后醒来」的劲——雨会停，天会亮，醒来的娃儿继续向前。每次听，都觉得还能再拼一把。</p>
+        <p class="sign">雨停之后，醒来的少年继续赶路。</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 引言 -->
+  <section class="reveal">
+    <div class="quote-box">
+      <p class="big">凌晨四点的球场，雨后醒来的清晨，<br>都是出发的地方。</p>
+      <p class="cap">—— 致永不落幕的曼巴，和雨后醒来的小镇娃儿</p>
+    </div>
+  </section>
+
+  <!-- 不止于此 -->
+  <section class="reveal">
+    <h2>不止于此。</h2>
+    <p class="lead">热爱尝试，正在解锁更多。</p>
+    <div class="tags">
+      <span class="tag">C / C++</span>
+      <span class="tag">Python</span>
+      <span class="tag">Web 开发</span>
+      <span class="tag">数据结构</span>
+      <span class="tag">算法</span>
+      <span class="tag">搭建这个网站</span>
+    </div>
+  </section>
+
+  <!-- 联系我 -->
+  <section class="reveal">
+    <h2>联系我。</h2>
+    <p class="lead">很高兴与你相识。</p>
+    <div class="contact-list">
+      <a href="tel:13135041398">
+        <span class="label">电话</span>
+        <span>131 3504 1398</span>
+      </a>
+      <a href="mailto:realletan@outlook.com">
+        <span class="label">邮箱</span>
+        <span>realletan@outlook.com</span>
+      </a>
+      <a href="#">
+        <span class="label">GitHub</span>
+        <span>待补充</span>
+      </a>
+    </div>
+  </section>
+
+  <footer>© 2026 谭乐 · 设计于湖南</footer>
+
+  <script>
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("on"); });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  </script>
+</body>
+</html>
